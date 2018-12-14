@@ -5,7 +5,7 @@ title: Detecting Trolls, Saving Democracy
 ![seas-iacs](pics/SEAS_IACS.png)
 
 Welcome to our CS209a Project: Twitter Troll Detection!
-- Code available on [GitHub](https://github.com/joeddav/troll_classification)
+- Code available on [GitHub](https://github.com/dylanrandle/troll_classification)
 
 ## Group Members
 - Joe Davison
@@ -34,14 +34,14 @@ investigation. The vast majority of the tweets in this dataset were posted from 
 ### Method
 
 Using the FiveThirtyEight data as positive-troll examples, we have collected an equally large set of
-tweets through various search queries relating to the 2016 election (see [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi%3A10.7910%2FDVN%2FPDI7IN) and [here](https://github.com/joeddav/troll_classification/blob/master/notebooks/tweepy_script.ipynb)). We use
+tweets through various search queries relating to the 2016 election (see [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi%3A10.7910%2FDVN%2FPDI7IN) and [here](https://github.com/dylanrandle/troll_classification/blob/master/notebooks/tweepy_script.ipynb)). We use
 these data as negative-troll examples. We are well aware that this non­-troll dataset may in fact include
 trolls, but these concerns are dampened by the fact that the overall population of trolls is relatively
 small compared to regular users, and that Twitter actively removes tweets from troll users (resulting in
 an even smaller proportion of tweets which come from trolls).
 
-Following the results of our exploratory data analysis ([EDA](https://joeddav.github.io/troll_classification/more_eda.html)), we clean, temporally slice and stratify
-our data such that the distribution of tweet post dates are approximately equal, as shown in the [cleaning](https://joeddav.github.io/troll_classification/Dataset%20Consolidation.html).
+Following the results of our exploratory data analysis ([EDA](https://dylanrandle.github.io/troll_classification/more_eda.html)), we clean, temporally slice and stratify
+our data such that the distribution of tweet post dates are approximately equal, as shown in the [cleaning](https://dylanrandle.github.io/troll_classification/Dataset%20Consolidation.html).
 When all is said and done, the temporal distribution of the data looks as follows (roughly equal).
 
 ![temporal-histogram](pics/temporal_histogram.png)
@@ -67,7 +67,7 @@ In summary, the number of tweets and label proportions (% trolls) in each split 
 | Temporal | 266003 | 33250 | 33251 | 66 |
 
 As you can see, we chose the temporal split such that the dataset sizes would be equal, and this resulted in a
-higher proportion of trolls (but still reasonable) in the temporal set. See [EDA](https://joeddav.github.io/troll_classification/more_eda.html) and [cleaning](https://joeddav.github.io/troll_classification/Dataset%20Consolidation.html)
+higher proportion of trolls (but still reasonable) in the temporal set. See [EDA](https://dylanrandle.github.io/troll_classification/more_eda.html) and [cleaning](https://dylanrandle.github.io/troll_classification/Dataset%20Consolidation.html)
 for more info.
 
 ### Models
@@ -80,24 +80,24 @@ unfamiliar with any of these methods, Google returns a plethora of useful result
 
 - Term-Frequency Inverse-Document-Frequency (TF-IDF)
 
-- Pre-trained [Semantic Sentence Embeddings](https://joeddav.github.io/troll_classification/sentence_embedding_eda.html) (from [InferSent](https://github.com/facebookresearch/InferSent))
+- Pre-trained [Semantic Sentence Embeddings](https://dylanrandle.github.io/troll_classification/sentence_embedding_eda.html) (from [InferSent](https://github.com/facebookresearch/InferSent))
 
 And we fit four different models:
 
-- Baseline [Naive Bayes](https://joeddav.github.io/troll_classification/naive_bayes_clean.html)
+- Baseline [Naive Bayes](https://dylanrandle.github.io/troll_classification/naive_bayes_clean.html)
 
-- [Logistic Regression](https://joeddav.github.io/troll_classification/LogisticRegression.html)
+- [Logistic Regression](https://dylanrandle.github.io/troll_classification/LogisticRegression.html)
 
-- [Support Vector Machine](https://joeddav.github.io/troll_classification/SVM.html)
+- [Support Vector Machine](https://dylanrandle.github.io/troll_classification/SVM.html)
 
-- Fully Connected [Neural Network](https://joeddav.github.io/troll_classification/TwitterNet_Sentence_Embeddings.html)
+- Fully Connected [Neural Network](https://dylanrandle.github.io/troll_classification/TwitterNet_Sentence_Embeddings.html)
 
 We invite you to click on the above links for an in-depth look at each of the methods we used.
 
 ### Results
 
-Below we present the percent accuracy in classifying troll vs. non-troll. As you can see, [Logistic Regression](https://joeddav.github.io/troll_classification/LogisticRegression.html)
-performed the best, with the [neural network](https://joeddav.github.io/troll_classification/TwitterNet_Sentence_Embeddings.html) coming in a close second. It is also interesting to note that the
+Below we present the percent accuracy in classifying troll vs. non-troll. As you can see, [Logistic Regression](https://dylanrandle.github.io/troll_classification/LogisticRegression.html)
+performed the best, with the [neural network](https://dylanrandle.github.io/troll_classification/TwitterNet_Sentence_Embeddings.html) coming in a close second. It is also interesting to note that the
 Logistic Regression and Naive Bayes models fit the data in less than 10 seconds on a 6-core  machine, while SVM
 takes 40 minutes on the same machine. On a GPU, the neural network takes roughly 3-4 minutes to fit.
 
@@ -113,7 +113,7 @@ takes 40 minutes on the same machine. On a GPU, the neural network takes roughly
 A few things to note are:
   - Logistic Regression with simple BoW performed the best in every setting
   - Neural Net with embeddings was very close behind
-  - Naive Bayes overfits quite strongly, even after tuning regularization parameters by [cross-validation](https://joeddav.github.io/troll_classification/naive_bayes_clean.html#training-and-testing-the-model)
+  - Naive Bayes overfits quite strongly, even after tuning regularization parameters by [cross-validation](https://dylanrandle.github.io/troll_classification/naive_bayes_clean.html#training-and-testing-the-model)
   - SVM does not overfit, but is computationally very slow, and does not perform as well as other methods
   - TF-IDF performed worse on our baseline Naive Bayes than BoW, so we adopted BoW for SVM and Logistic Regression
   - All models perform worse on the temporal split test set. This is intuitively what we expected as it should in general be
@@ -121,10 +121,10 @@ A few things to note are:
 
 Since Logistic Regression is an easily interpretable model (the coefficients of a feature represent the log-odds
 for the predicted probability), we were able to extract the top 10 most important features in predicting
-trolls and non-trolls. It is exciting that some of the features and words we identified in EDA showed up [here](https://joeddav.github.io/troll_classification/LogisticRegression.html#analysis-of-coefficients). One example of a word that our model found particularly useful
+trolls and non-trolls. It is exciting that some of the features and words we identified in EDA showed up [here](https://dylanrandle.github.io/troll_classification/LogisticRegression.html#analysis-of-coefficients). One example of a word that our model found particularly useful
 for identifying trolls is the "trumpforpresident" hashtag.
 
-We also provide some interesting visualizations of the principal components of the neural network's layers [here](https://joeddav.github.io/troll_classification/TwitterNet_Sentence_Embeddings.html#introduction).
+We also provide some interesting visualizations of the principal components of the neural network's layers [here](https://dylanrandle.github.io/troll_classification/TwitterNet_Sentence_Embeddings.html#introduction).
 
 ### Conclusions
 
